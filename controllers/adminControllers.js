@@ -76,11 +76,12 @@ const agendaTurnos = async (req, res) => {
     today.setHours(0);
     try {
         let listaTurnos = await Turnos.find().where('turno').gt(today).sort('turno').exec();
-        console.log(listaTurnos)
+        //console.log(listaTurnos)
         listaTurnos.map((element) => {
             element.dia = element.turno.getDate();
             element.mes = element.turno.getMonth()
         })
+        console.log(listaTurnos)
         res.status(200).json({ listaTurnos })
     } catch (error) {
         console.log(error);
